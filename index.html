@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Care · Crestwood University Grievance Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Glass Top Navigation -->
+  <header class="topbar" role="banner">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand" aria-label="Crestwood University Campus Care Portal">
+        <span class="brand-crest" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Crestwood University</span>
+          <span class="brand-sub">Campus Care &amp; Grievance Portal</span>
+        </span>
+      </a>
+
+      <nav class="topbar-nav" aria-label="Primary navigation">
+        <a href="#submit-section" class="nav-link active" data-nav="submit">Submit Complaint</a>
+        <a href="#track-section" class="nav-link" data-nav="track">Track Complaints</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <div class="popover-anchor">
+          <button
+            type="button"
+            class="icon-btn"
+            id="notificationsBtn"
+            aria-label="Notifications"
+            aria-expanded="false"
+            aria-controls="notificationsPopover"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span class="notif-dot" id="notifDot" aria-hidden="true"></span>
+          </button>
+
+          <div class="popover notifications-popover" id="notificationsPopover" role="dialog" aria-label="Notifications" hidden>
+            <div class="popover-header">
+              <span class="popover-title">Campus Updates</span>
+              <button type="button" class="text-btn" id="markReadBtn">Mark all read</button>
+            </div>
+            <ul class="notif-list" id="notifList">
+              <li class="notif-item unread" data-ref="GRV-2026-7C19">
+                <span class="notif-indicator amber" aria-hidden="true"></span>
+                <div class="notif-body">
+                  <p class="notif-text"><strong>GRV-2026-7C19</strong> moved to <em>In Progress</em> by Campus IT &amp; Networks.</p>
+                  <span class="notif-time">2 hours ago</span>
+                </div>
+              </li>
+              <li class="notif-item unread" data-ref="GRV-2026-5A03">
+                <span class="notif-indicator green" aria-hidden="true"></span>
+                <div class="notif-body">
+                  <p class="notif-text"><strong>GRV-2026-5A03</strong> marked <em>Resolved</em> · Hostel Maintenance confirmed repair.</p>
+                  <span class="notif-time">Yesterday, 4:15 PM</span>
+                </div>
+              </li>
+              <li class="notif-item" data-ref="GRV-2026-3E88">
+                <span class="notif-indicator blue" aria-hidden="true"></span>
+                <div class="notif-body">
+                  <p class="notif-text"><strong>GRV-2026-3E88</strong> acknowledged by Transport Services Office.</p>
+                  <span class="notif-time">Nov 21, 10:30 AM</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="popover-anchor">
+          <button
+            type="button"
+            class="profile-pill"
+            id="profileBtn"
+            aria-label="Student profile menu"
+            aria-expanded="false"
+            aria-controls="profilePopover"
+          >
+            <span class="avatar" aria-hidden="true">AR</span>
+            <span class="profile-meta">
+              <span class="profile-name">Aarav Rao</span>
+              <span class="profile-id">CS · ID 24B0192</span>
+            </span>
+            <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+
+          <div class="popover profile-popover" id="profilePopover" role="dialog" aria-label="Student account" hidden>
+            <div class="profile-card-head">
+              <span class="avatar avatar-lg" aria-hidden="true">AR</span>
+              <div>
+                <div class="profile-card-name">Aarav Rao</div>
+                <div class="profile-card-sub">aarav.rao@crestwood.edu</div>
+              </div>
+            </div>
+            <div class="profile-details">
+              <div class="profile-detail-row">
+                <span>Department</span>
+                <strong>Computer Science</strong>
+              </div>
+              <div class="profile-detail-row">
+                <span>Residence</span>
+                <strong>Oakridge Hall, Room 308</strong>
+              </div>
+              <div class="profile-detail-row">
+                <span>Academic Year</span>
+                <strong>Junior · Class of 2027</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="page-main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              Student Ombudsman &amp; Campus Services · 24/7 Tracking
+            </div>
+            <h1 class="hero-title">Your voice matters on campus</h1>
+            <p class="hero-subtitle">
+              Report facility repairs, academic concerns, hostel needs, or safety matters directly to the right campus office—with clear ownership and real-time resolution timelines.
+            </p>
+            <div class="hero-actions">
+              <button type="button" class="btn btn-primary btn-lg" id="heroRaiseBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Raise a Complaint
+              </button>
+              <a href="#track-section" class="btn btn-ghost btn-lg">
+                Track Existing Cases
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="hero-trust-panel" aria-label="Service commitments">
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </span>
+              <div>
+                <strong>&lt; 4 hrs</strong>
+                <span>First acknowledgement</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </span>
+              <div>
+                <strong>Verified Routing</strong>
+                <span>Direct to unit head</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              </span>
+              <div>
+                <strong>94% Resolved</strong>
+                <span>Within campus SLA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Dashboard Grid -->
+    <section class="workspace-section">
+      <div class="container workspace-grid">
+        <!-- Left / Primary Column: Submission Card + My Complaints -->
+        <div class="primary-column">
+          <!-- Complaint Submission Card -->
+          <section id="submit-section" class="card submit-card" aria-labelledby="submitHeading">
+            <div class="card-header">
+              <div>
+                <span class="section-eyebrow">New Grievance</span>
+                <h2 class="card-title" id="submitHeading">Submit a Complaint</h2>
+                <p class="card-subtitle">Share clear details so our campus response team can route and resolve it quickly.</p>
+              </div>
+              <span class="sla-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 16v-4M12 8h.01" />
+                </svg>
+                Auto-assigned by category
+              </span>
+            </div>
+
+            <!-- Form State -->
+            <form id="complaintForm" class="complaint-form" novalidate>
+              <!-- Category Chips -->
+              <div class="form-group">
+                <label class="form-label">Category <span class="required-mark">*</span></label>
+                <div class="category-chips" role="radiogroup" aria-label="Complaint category" id="categoryChips">
+                  <button type="button" class="cat-chip selected" data-category="Facilities" role="radio" aria-checked="true">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                      </svg>
+                    </span>
+                    Facilities
+                  </button>
+                  <button type="button" class="cat-chip" data-category="Academic" role="radio" aria-checked="false">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                      </svg>
+                    </span>
+                    Academic
+                  </button>
+                  <button type="button" class="cat-chip" data-category="Hostel" role="radio" aria-checked="false">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                      </svg>
+                    </span>
+                    Hostel
+                  </button>
+                  <button type="button" class="cat-chip" data-category="Safety" role="radio" aria-checked="false">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M12 8v4M12 16h.01" />
+                      </svg>
+                    </span>
+                    Safety
+                  </button>
+                  <button type="button" class="cat-chip" data-category="Transport" role="radio" aria-checked="false">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 6v6M15 6v6M2 12h19.6M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="16" cy="18" r="2" />
+                      </svg>
+                    </span>
+                    Transport
+                  </button>
+                  <button type="button" class="cat-chip" data-category="Other" role="radio" aria-checked="false">
+                    <span class="cat-chip-icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="19" cy="12" r="1" />
+                        <circle cx="5" cy="12" r="1" />
+                      </svg>
+                    </span>
+                    Other
+                  </button>
+                </div>
+              </div>
+
+              <!-- Title & Location Row -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="complaintTitle" class="form-label">Complaint Title <span class="required-mark">*</span></label>
+                  <input
+                    type="text"
+                    id="complaintTitle"
+                    class="form-control"
+                    placeholder="e.g., Flickering lights in Lecture Hall 204"
+                    maxlength="100"
+                    required
+                  />
+                  <span class="field-error" id="titleError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="complaintLocation" class="form-label">Campus Location <span class="required-mark">*</span></label>
+                  <input
+                    type="text"
+                    id="complaintLocation"
+                    class="form-control"
+                    placeholder="e.g., Science Block, 2nd Floor"
+                    list="campusLocations"
+                    required
+                  />
+                  <datalist id="campusLocations">
+                    <option value="Central Library · Reading Wing"></option>
+                    <option value="Oakridge Hostel · Block B"></option>
+                    <option value="Engineering Quad · Lab 302"></option>
+                    <option value="Main Gate Shuttle Bay"></option>
+                    <option value="Student Commons &amp; Dining Hall"></option>
+                  </datalist>
+                  <span class="field-error" id="locationError" role="alert"></span>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="complaintDescription" class="form-label">Description <span class="required-mark">*</span></label>
+                  <span class="char-counter" id="descCounter">0 / 500</span>
+                </div>
+                <textarea
+                  id="complaintDescription"
+                  class="form-control form-textarea"
+                  rows="3"
+                  maxlength="500"
+                  placeholder="Describe what happened, when you noticed it, and any helpful context for the response team..."
+                  required
+                ></textarea>
+                <span class="field-error" id="descError" role="alert"></span>
+              </div>
+
+              <!-- Priority & Optional Image Upload -->
+              <div class="form-row-2 align-start">
+                <div class="form-group">
+                  <label class="form-label">Priority Level</label>
+                  <div class="priority-group" role="radiogroup" aria-label="Priority level" id="priorityGroup">
+                    <button type="button" class="priority-pill" data-priority="Low" role="radio" aria-checked="false">
+                      <span class="prio-dot low" aria-hidden="true"></span> Low
+                    </button>
+                    <button type="button" class="priority-pill selected" data-priority="Medium" role="radio" aria-checked="true">
+                      <span class="prio-dot medium" aria-hidden="true"></span> Medium
+                    </button>
+                    <button type="button" class="priority-pill" data-priority="High" role="radio" aria-checked="false">
+                      <span class="prio-dot high" aria-hidden="true"></span> High
+                    </button>
+                    <button type="button" class="priority-pill" data-priority="Urgent" role="radio" aria-checked="false">
+                      <span class="prio-dot urgent" aria-hidden="true"></span> Urgent
+                    </button>
+                  </div>
+                  <p class="field-hint">Routing office: <strong id="routingPreview">Campus Facilities &amp; Estates</strong></p>
+                </div>
+
+                <div class="form-group">
+                  <label for="complaintImage" class="form-label">Attachment <span class="optional-tag">(Optional)</span></label>
+                  <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="complaintImage" accept="image/*" class="sr-only" />
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                      </svg>
+                      <div class="upload-text">
+                        <span><strong>Upload photo</strong> or drag &amp; drop</span>
+                        <small>PNG, JPG up to 5 MB</small>
+                      </div>
+                    </div>
+                    <div class="upload-preview" id="uploadPreview" hidden>
+                      <img id="previewImg" alt="Uploaded evidence preview" />
+                      <div class="upload-file-meta">
+                        <span id="previewFileName">photo.jpg</span>
+                        <small id="previewFileSize">120 KB</small>
+                      </div>
+                      <button type="button" class="remove-file-btn" id="removeFileBtn" aria-label="Remove uploaded image">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <span class="privacy-note">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  Visible only to you and the assigned campus office
+                </span>
+                <button type="submit" class="btn btn-primary">
+                  Submit Complaint
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+
+            <!-- Highlighted Confirmation Card (Success State) -->
+            <div id="confirmationCard" class="confirmation-card" hidden aria-live="polite">
+              <div class="confirmation-top">
+                <div class="confirmation-icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="confirmation-tag">Complaint Registered</span>
+                  <h3 class="confirmation-heading">Your grievance has been logged</h3>
+                  <p class="confirmation-sub" id="confirmDeptMsg">
+                    Routed to Campus Facilities &amp; Estates. You will receive updates as soon as an officer picks up the case.
+                  </p>
+                </div>
+              </div>
+
+              <div class="ref-highlight-box">
+                <div>
+                  <span class="ref-box-label">Reference Number</span>
+                  <div class="ref-code" id="generatedRefCode">GRV-2026-8F42</div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-sm" id="copyRefBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                  Copy ID
+                </button>
+              </div>
+
+              <div class="confirmation-meta-grid">
+                <div class="confirm-meta-item">
+                  <span>Category</span>
+                  <strong id="confirmCategory">Facilities</strong>
+                </div>
+                <div class="confirm-meta-item">
+                  <span>Priority</span>
+                  <strong id="confirmPriority">Medium</strong>
+                </div>
+                <div class="confirm-meta-item">
+                  <span>Status</span>
+                  <strong><span class="status-badge status-submitted">Submitted</span></strong>
+                </div>
+              </div>
+
+              <div class="confirmation-actions">
+                <button type="button" class="btn btn-primary" id="viewCreatedBtn">View in My Complaints</button>
+                <button type="button" class="btn btn-ghost" id="submitAnotherBtn">Submit Another Complaint</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- My Complaints Dashboard -->
+          <section id="track-section" class="card complaints-card" aria-labelledby="myComplaintsHeading">
+            <div class="complaints-header">
+              <div>
+                <span class="section-eyebrow">Grievance Tracker</span>
+                <h2 class="card-title" id="myComplaintsHeading">My Complaints</h2>
+              </div>
+
+              <div class="complaints-controls">
+                <div class="search-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search ID, title, location..."
+                    aria-label="Search complaints"
+                  />
+                </div>
+
+                <div class="view-toggle" role="group" aria-label="Layout view">
+                  <button type="button" class="view-btn active" data-view="cards" aria-pressed="true" title="Card view">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="3" width="7" height="7" rx="1" />
+                      <rect x="14" y="3" width="7" height="7" rx="1" />
+                      <rect x="3" y="14" width="7" height="7" rx="1" />
+                      <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg>
+                  </button>
+                  <button type="button" class="view-btn" data-view="table" aria-pressed="false" title="Table view">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="8" y1="6" x2="21" y2="6" />
+                      <line x1="8" y1="12" x2="21" y2="12" />
+                      <line x1="8" y1="18" x2="21" y2="18" />
+                      <line x1="3" y1="6" x2="3.01" y2="6" />
+                      <line x1="3" y1="12" x2="3.01" y2="12" />
+                      <line x1="3" y1="18" x2="3.01" y2="18" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-bar" role="tablist" aria-label="Filter complaints by status">
+              <button type="button" class="filter-pill active" data-filter="All" role="tab" aria-selected="true">
+                All <span class="pill-count" id="countAll">0</span>
+              </button>
+              <button type="button" class="filter-pill" data-filter="Submitted" role="tab" aria-selected="false">
+                <span class="status-dot blue" aria-hidden="true"></span>
+                Submitted <span class="pill-count" id="countSubmitted">0</span>
+              </button>
+              <button type="button" class="filter-pill" data-filter="In Progress" role="tab" aria-selected="false">
+                <span class="status-dot amber" aria-hidden="true"></span>
+                In Progress <span class="pill-count" id="countInProgress">0</span>
+              </button>
+              <button type="button" class="filter-pill" data-filter="Resolved" role="tab" aria-selected="false">
+                <span class="status-dot green" aria-hidden="true"></span>
+                Resolved <span class="pill-count" id="countResolved">0</span>
+              </button>
+            </div>
+
+            <!-- Complaints List / Table Container -->
+            <div id="complaintsContainer" class="complaints-list"></div>
+
+            <!-- Helpful Empty State -->
+            <div id="emptyState" class="empty-state" hidden>
+              <div class="empty-illustration" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35" />
+                  <path d="M8 11h6" />
+                </svg>
+              </div>
+              <h3 class="empty-title">No matching complaints found</h3>
+              <p class="empty-desc" id="emptyStateDesc">
+                No complaints match your current search or status filter. Clear filters to view all campus submissions.
+              </p>
+              <button type="button" class="btn btn-secondary" id="resetFiltersBtn">Reset Filters</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right-Side Summary Area -->
+        <aside class="summary-column" aria-label="Complaint summary metrics">
+          <div class="summary-sticky">
+            <div class="card metrics-card">
+              <div class="metrics-header">
+                <span class="section-eyebrow">Overview</span>
+                <h2 class="card-title-sm">Your Resolution Summary</h2>
+              </div>
+
+              <div class="metrics-grid">
+                <div class="metric-tile">
+                  <div class="metric-top">
+                    <span class="metric-label">Total Complaints</span>
+                    <span class="metric-icon neutral" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="metric-value" id="metricTotal">0</div>
+                  <div class="metric-foot">Fall 2026 semester</div>
+                </div>
+
+                <div class="metric-tile">
+                  <div class="metric-top">
+                    <span class="metric-label">In Progress</span>
+                    <span class="metric-icon amber" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="metric-value" id="metricInProgress">0</div>
+                  <div class="metric-foot">Active with staff</div>
+                </div>
+
+                <div class="metric-tile">
+                  <div class="metric-top">
+                    <span class="metric-label">Resolved</span>
+                    <span class="metric-icon green" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="metric-value" id="metricResolved">0</div>
+                  <div class="metric-foot">Closed &amp; verified</div>
+                </div>
+
+                <div class="metric-tile accent">
+                  <div class="metric-top">
+                    <span class="metric-label">Avg. Resolution</span>
+                    <span class="metric-icon teal" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="metric-value" id="metricAvgTime">18.4 hrs</div>
+                  <div class="metric-foot">24% faster than target</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Progress Timeline Spotlight -->
+            <div class="card activity-card">
+              <div class="metrics-header">
+                <span class="section-eyebrow">Latest Activity</span>
+                <h3 class="card-title-sm">Active Case Timeline</h3>
+              </div>
+              <div id="spotlightCaseInfo" class="spotlight-case"></div>
+              <ol class="timeline" id="spotlightTimeline"></ol>
+              <button type="button" class="btn btn-ghost btn-full btn-sm" id="inspectSpotlightBtn">
+                Inspect full case details
+              </button>
+            </div>
+
+            <!-- Campus Support Contacts -->
+            <div class="card support-card">
+              <div class="support-row">
+                <span class="support-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </span>
+                <div>
+                  <div class="support-title">Urgent Campus Safety Desk</div>
+                  <div class="support-sub">24/7 Helpline · Ext. 4400 · Gatehouse A</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-over Complaint Detail & Timeline Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="detail-drawer" id="detailDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+    <div class="drawer-header">
+      <div>
+        <span class="ref-pill" id="drawerRef">GRV-2026-0000</span>
+        <h2 class="drawer-title" id="drawerTitle">Complaint Details</h2>
+      </div>
+      <button type="button" class="icon-btn" id="closeDrawerBtn" aria-label="Close complaint details">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <!-- Floating Mobile Raise Complaint Action -->
+  <button type="button" class="fab-raise" id="fabRaiseBtn" aria-label="Raise a new complaint">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+    <span>Raise Complaint</span>
+  </button>
+
+  <!-- Discreet Toast Notification Region -->
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Crestwood University · Office of Student Affairs &amp; Campus Compliance</span>
+      <span>Accessible, transparent grievance resolution</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
